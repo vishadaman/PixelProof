@@ -1,0 +1,183 @@
+/* =============================================================================
+   PIXELPROOF GLOBAL STYLES
+   ============================================================================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------------------------------------------------------
+   BASE LAYER - Reset & Defaults
+   ----------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    /* CSS variables for theming (can be toggled for dark mode) */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  /* TODO: Add dark mode theme */
+  /* .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    ...
+  } */
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   COMPONENTS LAYER - Reusable patterns
+   ----------------------------------------------------------------------------- */
+@layer components {
+  /* Button variants - TODO: Replace with shadcn/ui Button component */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-error {
+    @apply badge bg-red-100 text-red-800;
+  }
+
+  .badge-info {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+
+  /* Card component */
+  .card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-sm;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  /* Code blocks */
+  .code {
+    @apply font-mono text-sm bg-gray-100 px-1.5 py-0.5 rounded;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   UTILITIES LAYER - One-off helpers
+   ----------------------------------------------------------------------------- */
+@layer utilities {
+  /* Scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+
+  /* Text ellipsis helpers */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   CUSTOM ANIMATIONS
+   ----------------------------------------------------------------------------- */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+}
+
